@@ -5,7 +5,7 @@
 #include <vector>
 
 using namespace std;
-#define FUNC_3
+#define FUNC_2
 
 double f(double y, double t)
 {
@@ -19,6 +19,10 @@ double f(double y, double t)
 	#endif
 
 	#ifdef FUNC_3
+    return sin(y*t);
+	#endif
+
+	#ifdef FUNC_4
     return sin(y*t);
 	#endif
 }
@@ -36,6 +40,10 @@ double a_derivative(double y, double t)
 	#ifdef FUNC_3
     return cos(y*t) * t;
 	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
+	#endif
 }
 
 double b_derivative(double y, double t)
@@ -50,6 +58,10 @@ double b_derivative(double y, double t)
 
 	#ifdef FUNC_3
     return cos(y*t) * y;
+	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
 	#endif
 }
 
@@ -66,6 +78,10 @@ double a_hessian(double y, double t)
 	#ifdef FUNC_3
     return -1 * pow(t,2) * sin(y*t);
 	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
+	#endif
 }
 
 double b_hessian(double y, double t)
@@ -80,6 +96,10 @@ double b_hessian(double y, double t)
 
 	#ifdef FUNC_3
     return cos(y*t) - y*t*sin(y*t);
+	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
 	#endif
 }
 
@@ -96,6 +116,10 @@ double c_hessian(double y, double t)
 	#ifdef FUNC_3
     return cos(y*t) - y*t*sin(y*t);
 	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
+	#endif
 }
 
 double d_hessian(double y, double t)
@@ -110,6 +134,10 @@ double d_hessian(double y, double t)
 
 	#ifdef FUNC_3
     return -1 * pow(y,2) * sin(y*t);
+	#endif
+
+	#ifdef FUNC_4
+    return sin(y*t);
 	#endif
 }
 
@@ -141,7 +169,7 @@ int main() {
     
 	//cin >> x0 >> e;
     
-	x0 = 0.5;
+	x0 = 0.1;
 	e = 0.01;
 
 	vector<double> t;
@@ -168,7 +196,7 @@ int main() {
         double inv_d = inverse_prefix * a;
         
 		t.push_back(tv);
-		x.push_back(x.back() + (inv_c*der_a + inv_d*der_b));
+		x.push_back(x.back() - (inv_c*der_a + inv_d*der_b));
 	}
 
 	draw_plot(&t, &x);
