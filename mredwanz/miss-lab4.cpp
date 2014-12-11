@@ -14,9 +14,7 @@ typedef double (*fpointer)(double, double);
 double f(double y, double t)
 {
 	//return sin(t) - y * y - 2 + t * t * t;
-	//return -2 * t * t * t + 12 * t * t - 20 * t + 8.5 + y;
-    //return sin(y*t);
-    return pow(y,4) + 2*pow(y,2)*pow(t,2) +  pow(t,4);
+	 return pow(y,4) + 2*pow(y,2)*pow(t,2) +  pow(t,4);
 }
 
 double runge_kutta(fpointer f, double y, double t, double T)
@@ -56,9 +54,9 @@ int main() {
 	//rzad metody
 	double p = 4.0;
 
+    x0 = 0.1;
+	e = 0.001;
 	//cin >> x0 >> e;
-    x0=0.1;
-    e=0.01;
 
 	h = 0.01;
 
@@ -68,14 +66,14 @@ int main() {
 	t.push_back(tmin);
 	x.push_back(x0);
 
-	h = e;
+	/*h = e;
 	for(double tv = tmin + h; tv <= tmax; tv += h)
 	{
 		t.push_back(tv);
 		x.push_back(runge_kutta(f, x.back(), tv, h));
-	}
-/*
-	for(double tv = tmin + h; tv <= (tmax + (h / 2)); tv += h)
+	}*/
+
+	/*for(double tv = tmin + h; tv <= (tmax + (h / 2)); tv += h)
 	{
 		double y1 = x.back();
 		double y2 = x.back();
@@ -97,7 +95,7 @@ int main() {
 			tv -= h;
 			h /= 2.0;
 		}
-	}
+	}*/
 
 	for(double tv = tmin; tv < tmax;)
 	{
@@ -155,7 +153,7 @@ int main() {
 		}
 
 	}
-*/
+
 	draw_plot(&t, &x);
 
 	return EXIT_SUCCESS;
