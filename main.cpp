@@ -48,18 +48,18 @@ double improved_euler(fp f, double y, double t, double h)
 
 double rk3(fp f, double y, double t, double h)
 {
-	/*
+	
 	double k1 = h * f(y, t);
 	double k2 = h * f(y + k1 / 2, t + h / 2);
 	double k3 = h * f(y - k1 + 2*k2 , t + h);
 	double result = y + (k1 + 4*k2 + k3 ) / 6;
-	*/
 	
+	/*
 	double k1 =  f(y, t);
 	double k2 =  f(y + h*k1, t + h );
 	double k3 =  f(y + h*(k1+k2)/4 , t + h/2);
 	double result = y + h*(k1 + k2 + 4*k3 ) / 6;
-	
+	*/
 	return result;
 
 }
